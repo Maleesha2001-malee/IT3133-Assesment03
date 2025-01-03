@@ -6,56 +6,90 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons'; // Install expo/vector-icons or an equivalent icon package.
+import { Ionicons } from '@expo/vector-icons';
+import { students } from '../data/StudentDb';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [focusedInput, setFocusedInput] = useState(null);
+
+  const handleFocus = (inputName) => {
+    setFocusedInput(inputName);
+  };
+
+  const handleBlur = () => {
+    setFocusedInput(null);
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   return (
     <View style={styles.container}>
+      <Text style={styles.headerText}>STUDENT LOGIN</Text>
+      
       <View style={styles.inputContainer}>
         <Text
           style={[
             styles.label,
-            username ? styles.labelActive : styles.labelInactive,
+            (username || focusedInput === 'username') ? styles.labelActive : styles.labelInactive,
           ]}
         >
           Username
         </Text>
-        <TextInput
-          style={styles.input}
-          value={username}
-          onChangeText={setUsername}
-          keyboardType="default"
-        />
+        <TouchableOpacity 
+          activeOpacity={1} 
+          style={styles.usernameContainer}
+        >
+          <TextInput
+            style={[
+              styles.input, 
+              styles.usernameInput,
+              focusedInput === 'username' && styles.inputFocused
+            ]}
+            value={username}
+            onChangeText={setUsername}
+            onFocus={() => handleFocus('username')}
+            onBlur={handleBlur}
+          />
+        </TouchableOpacity>
       </View>
 
       <View style={styles.inputContainer}>
         <Text
           style={[
             styles.label,
-            password ? styles.labelActive : styles.labelInactive,
+            (password || focusedInput === 'password') ? styles.labelActive : styles.labelInactive,
           ]}
         >
           Password
         </Text>
         <View style={styles.passwordContainer}>
           <TextInput
-            style={[styles.input, styles.passwordInput]}
+            style={[
+              styles.input, 
+              styles.passwordInput,
+              focusedInput === 'password' && styles.inputFocused
+            ]}
             value={password}
             onChangeText={setPassword}
             secureTextEntry={!showPassword}
+            onFocus={() => handleFocus('password')}
+            onBlur={handleBlur}
           />
-          <TouchableOpacity
-            onPress={() => setShowPassword(!showPassword)}
-            style={styles.eyeIcon}
+          <TouchableOpacity 
+            style={styles.eyeIconContainer}
+            onPress={togglePasswordVisibility}
+            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
             <Ionicons
               name={showPassword ? 'eye-off' : 'eye'}
-              size={20}
-              color="#aaa"
+              size={24}
+              color="#000"
+              style={styles.eyeIcon}
             />
           </TouchableOpacity>
         </View>
@@ -75,6 +109,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
+  },
+  headerText: {
+    fontSize: 30,
+    color: 'black',
+    marginBottom: 50,
   },
   inputContainer: {
     width: '100%',
@@ -100,35 +139,55 @@ const styles = StyleSheet.create({
   },
   input: {
     width: '100%',
+    height: 45,
     borderWidth: 1,
-    borderColor: '#4b0150',
+    borderColor: '#ddd',
     borderRadius: 8,
-    paddingHorizontal: 10,
-    paddingVertical: 10,
-    fontSize: 16,
+    paddingHorizontal: 15,
+    marginBottom: 15,
     backgroundColor: '#F9F9F9',
+    fontSize: 16,
+  },
+  inputFocused: {
+    borderWidth: 2,
+    borderColor: '#4b0150',
+    backgroundColor: '#fff',
   },
   passwordContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    position: 'relative',
+    width: '100%',
+  },
+  usernameContainer: {
+    width: '100%',
   },
   passwordInput: {
-    flex: 1,
+    paddingRight: 50, 
   },
-  eyeIcon: {
-    marginLeft: 10,
-  },
-  loginButton: {
-    width: '100%',
-    height: 40,
-    backgroundColor: '#4b0150',
-    borderRadius: 20,
+  eyeIconContainer: {
+    position: 'absolute',
+    right: 12,
+    top: 10, 
+    width: 30,
+    height: 30,
     justifyContent: 'center',
     alignItems: 'center',
   },
+  eyeIcon: {
+    opacity: 0.7,
+  },
+  loginButton: {
+    width: '100%',
+    height: 45,
+    backgroundColor: '#4b0150',
+    borderRadius: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 10,
+  },
   loginButtonText: {
     color: '#fff',
-    fontSize: 15,
+    fontSize: 16,
+    fontWeight: '600',
   },
 });
 
