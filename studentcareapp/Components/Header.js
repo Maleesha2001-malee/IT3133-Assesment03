@@ -31,14 +31,14 @@ const styles = StyleSheet.create({
     header_text: {
         backgroundColor: '#4b0150',
         width: '100%',
-        height:80,
+        height:100,
         justifyContent: 'center',
     },
     header_text_content: {
         color: '#fff',
-        fontSize: 15,
+        fontSize: 22,
         textAlign: 'center',
-        marginTop:30
+        marginTop:50
     },
     imageContainer: {
        alignItems: 'center', 
@@ -47,8 +47,8 @@ const styles = StyleSheet.create({
        
     },
     image: {
-        width: 150, 
-        height: 50, 
-        resizeMode: 'contain', 
+        width: 350,
+        height:120,
+        resizeMode: 'contain',
     },
 });
