@@ -8,7 +8,7 @@ import {
   Alert,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { students } from '../data/StudentsDb';
+import { students } from '../data/StudentDb';
 
 const Login = () => {
   const [username, setUsername] = useState('');
