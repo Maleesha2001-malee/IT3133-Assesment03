@@ -1,21 +1,20 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View ,ScrollView} from 'react-native';
 import Header from './Components/Header';
+import Login from './Components/Login';
 
 export default function App() {
   return (
-    <View>
+    <ScrollView contentContainerStyle={styles.container}>
       <Header></Header>
+      <Login></Login>
+    </ScrollView>
       
-    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+},
 });

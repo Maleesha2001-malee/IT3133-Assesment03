@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     },
     header_text: {
         backgroundColor: '#4b0150',
-        maxWidth: '100%',
+        width: '100%',
         height:80,
         justifyContent: 'center',
     },
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     },
     imageContainer: {
        alignItems: 'center', 
-       maxWidth: '100%',
+       width: '100%',
       
        
     },

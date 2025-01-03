@@ -1,0 +1,14 @@
+{
+    "name": "React Native",
+    "image": "mcr.microsoft.com/devcontainers/javascript-node:16",
+    "postCreateCommand": "npm install",
+    "customizations": {
+      "vscode": {
+        "extensions": [
+          "dbaeumer.vscode-eslint",
+          "esbenp.prettier-vscode"
+        ]
+      }
+    }
+  }
+  
