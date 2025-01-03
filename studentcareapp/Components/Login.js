@@ -6,20 +6,20 @@ import {
   TouchableOpacity,
   StyleSheet,
   Alert,
+  ScrollView,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { students } from '../data/StudentDb';
 
-const Login = () => {
+const Login = ({ navigation }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [focusedInput, setFocusedInput] = useState(null);
   const [error, setError] = useState('');
+  const [focusedInput, setFocusedInput] = useState(null);
 
   const handleFocus = (inputName) => {
     setFocusedInput(inputName);
-    setError('');
   };
 
   const handleBlur = () => {
@@ -27,136 +27,132 @@ const Login = () => {
   };
 
   const handleLogin = () => {
-    if (!username || !password) {
-      setError('Please enter both username and password');
-      return;
-    }
-
     const student = students.find(
       (s) => s.username.toLowerCase() === username.toLowerCase()
     );
 
-    if (!student) {
-      setError('Invalid username');
+    if (!student ) {
+      setError(true);
       return;
     }
 
     if (student.password !== password) {
-      setError('Invalid password');
+      setError(true);
       return;
     }
 
     // Successful login
-    setError('');
-    Alert.alert('Success', 'Login successful!');
-    // You can handle successful login here
+    setError(false);
+    Alert.alert('Login Successful!', `Welcome, ${student.name}!`);
+    navigation.navigate('Home', { studentData: student });
   };
 
   return (
-    <View style={styles.loginContainer}>
-      <Text style={styles.headerText}>STUDENT LOGIN</Text>
-      
-      <View style={styles.inputContainer}>
-        <Text
-          style={[
-            styles.label,
-            (username || focusedInput === 'username') ? styles.labelActive : styles.labelInactive,
-          ]}
-        >
-          Username
-        </Text>
-        <View style={styles.usernameContainer}>
-          <TextInput
-            style={[
-              styles.input, 
-              styles.usernameInput,
-              focusedInput === 'username' && styles.inputFocused,
-              error && error.includes('username') && styles.inputError
-            ]}
-            value={username}
-            onChangeText={(text) => {
-              setUsername(text);
-              setError('');
-            }}
-            onFocus={() => handleFocus('username')}
-            onBlur={handleBlur}
-            autoCapitalize="none"
-          />
-        </View>
-      </View>
+    <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled">
+      <View style={styles.container}>
+        <Text style={styles.headerText}>STUDENT LOGIN</Text>
 
-      <View style={styles.inputContainer}>
-        <Text
-          style={[
-            styles.label,
-            (password || focusedInput === 'password') ? styles.labelActive : styles.labelInactive,
-          ]}
-        >
-          Password
-        </Text>
-        <View style={styles.passwordContainer}>
-          <TextInput
-            style={[
-              styles.input, 
-              styles.passwordInput,
-              focusedInput === 'password' && styles.inputFocused,
-              error && error.includes('password') && styles.inputError
-            ]}
-            value={password}
-            onChangeText={(text) => {
-              setPassword(text);
-              setError('');
-            }}
-            secureTextEntry={!showPassword}
-            onFocus={() => handleFocus('password')}
-            onBlur={handleBlur}
-            autoCapitalize="none"
-          />
-          <TouchableOpacity 
-            style={styles.eyeIconContainer}
-            onPress={() => setShowPassword(!showPassword)}
-            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+        <View style={styles.inputContainer}>
+          <Text style={[styles.label,
+          (focusedInput === 'username' || username) ? styles.labelActive : styles.labelInactive,
+          
+          ]}>
+            Username
+          </Text>
+          <TouchableOpacity
+            activeOpacity={1}
+            style={styles.usernameContainer}
           >
-            <Ionicons
-              name={showPassword ? 'eye-off' : 'eye'}
-              size={24}
-              color="#000"
-              style={styles.eyeIcon}
+            <TextInput
+              style={[
+                styles.input,
+                styles.usernameInput,
+                styles.inputFocused,
+              ]}
+              value={username}
+              onChangeText={setUsername}
+              onFocus={() => handleFocus('username')}
+              onBlur={handleBlur}
             />
           </TouchableOpacity>
         </View>
-      </View>
 
-      {error ? (
-        <View style={styles.errorContainer}>
-          <Text style={styles.errorText}>{error}</Text>
+        <View style={styles.inputContainer}>
+          <View style={styles.inputContainer}>
+            <Text
+              style={[
+                styles.label,
+                (focusedInput === 'password' || password) ? styles.labelActive : styles.labelInactive,
+                
+                
+              ]}
+            >
+              Password
+            </Text>
+            <View style={styles.passwordContainer}>
+              <TextInput
+                style={[
+                  styles.input,
+                  styles.passwordInput,
+                  styles.inputFocused,
+                ]}
+                value={password}
+                onChangeText={setPassword}
+                secureTextEntry={!showPassword}
+                onFocus={() => handleFocus('password')}
+                onBlur={handleBlur}
+              />
+              <TouchableOpacity
+                style={styles.eyeIconContainer}
+                onPress={() => setShowPassword(!showPassword)}
+                hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+              >
+                <Ionicons
+                  name={showPassword ? 'eye-off' : 'eye'}
+                  size={24}
+                  color="#000"
+                  style={styles.eyeIcon}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
+         
+
+          <TouchableOpacity style={styles.button} onPress={handleLogin}>
+            <Text style={styles.buttonText}>Login</Text>
+          </TouchableOpacity>
+          <View style={styles.errorWrapper}>
+          {error && ( 
+            <View style={styles.errorContainer}>
+            <Ionicons
+              name="alert-circle"
+              size={20}
+              color="#8a23df"
+              style={styles.errorIcon}
+            /> <Text style={styles.errorText}> Please check the username and password
+            </Text> 
+            </View>
+          )}
+          </View>
+          </View>
         </View>
-      ) : null}
-
-      <TouchableOpacity 
-        style={styles.loginButton}
-        onPress={handleLogin}
-      >
-        <Text style={styles.loginButtonText}>Login</Text>
-      </TouchableOpacity>
-    </View>
+     
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  loginContainer: {
-    width: '100%',
-    paddingHorizontal: 20,
-    paddingVertical: 30,
+  container: {
+    flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    padding: 20,
   },
   headerText: {
     fontSize: 30,
     color: 'black',
     marginBottom: 50,
-    fontWeight: '600',
   },
   inputContainer: {
     width: '100%',
@@ -177,28 +173,17 @@ const styles = StyleSheet.create({
   },
   labelActive: {
     top: -10,
-    fontSize: 12,
+    fontSize: 15,
     color: '#4b0150',
   },
   input: {
     width: '100%',
     height: 45,
     borderWidth: 1,
-    borderColor: '#4b0150',
     borderRadius: 8,
     paddingHorizontal: 15,
     marginBottom: 15,
-    backgroundColor: '#F9F9F9',
     fontSize: 16,
-  },
-  inputFocused: {
-    borderWidth: 2,
-    borderColor: '#4b0150',
-    backgroundColor: '#fff',
-  },
-  inputError: {
-    borderColor: '#ff3333',
-    borderWidth: 1,
   },
   passwordContainer: {
     position: 'relative',
@@ -222,26 +207,49 @@ const styles = StyleSheet.create({
   eyeIcon: {
     opacity: 0.7,
   },
+
+  inputFocused: {
+    borderColor: '#4b0150',
+    borderWidth: 2,
+  },
+  errorWrapper: {
+    flex: 1,
+    justifyContent: 'center', 
+    alignItems: 'center', 
+  },
   errorContainer: {
-    width: '100%',
-    marginBottom: 15,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
     paddingHorizontal: 10,
+    paddingVertical: 5, 
+    borderRadius: 10,
+    width: '75%',
+    backgroundColor: '#e4cdf6',
+    marginTop: 40,
+    justifyContent:'center',
+    textAlign: 'center',
+    
+  },
+  errorIcon: {
+    marginRight: 5,
   },
   errorText: {
-    color: '#ff3333',
-    fontSize: 14,
-    textAlign: 'center',
+    color: '#000',
+    marginBottom: 5,
+    fontSize: 10,
   },
-  loginButton: {
+  button: {
     width: '100%',
     height: 45,
     backgroundColor: '#4b0150',
     borderRadius: 25,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 10,
+    marginTop: 5,
+    
   },
-  loginButtonText: {
+  buttonText: {
     color: '#fff',
     fontSize: 16,
     fontWeight: '600',
