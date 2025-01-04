@@ -2,7 +2,7 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 
-const Profile = ({ studentData }) => {
+const Course = ({ studentData }) => {
   return (
     <View style={styles.profile}>
     <View style={styles.profileContainer}>
@@ -16,7 +16,7 @@ const Profile = ({ studentData }) => {
         Age: {studentData.age} | Gender: {studentData.gender}
       </Text>
     </View>
-
+    <View style={styles.verticalLine} />
     {/* Contact Information */}
     <View style={styles.infoSection}>
       <Text style={styles.sectionTitle}>Contact Information</Text>
@@ -33,7 +33,7 @@ const Profile = ({ studentData }) => {
       <View style={styles.infoContent}>
         <Text style={styles.infoText}>Gender: {studentData.gender}</Text>
         <Text style={styles.infoText}>Age: {studentData.age}</Text>
-        <Text style={styles.infoText}>Blood Group: {studentData.bloodGroup}</Text>
+        <Text style={styles.infoText}>Blood Group: {studentData.blood_group}</Text>
       </View>
     </View>
   </View>
@@ -58,6 +58,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     marginVertical: 10,
+  },
+  verticalLine: {
+    width: "85%",          
+    backgroundColor: '#ddd',
+    height: 2,     
+    marginHorizontal: 15, 
+    marginBottom:10,
   },
   image: {
     width: 350,
@@ -113,4 +120,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Profile;
+export default Course;

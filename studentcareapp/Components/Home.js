@@ -1,37 +1,47 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useNavigationState} from '@react-navigation/native';
-import Profile from './Profile'; 
+import { useState } from 'react';
+import Profile from './Profile';
+import Course from './Course';
+import Subjects from './Subjects';
 
 const Home = ({ navigation, route }) => {
-  const { studentData } = route.params;
-  const currentRoute = useNavigationState(state => state.routes[state.index].name);
-  const isProfileActive = route.name === 'Profile';
+  const { studentData } = route.params || {};
+  const [activeTab, setActiveTab] = useState('profile');
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'profile':
+        return <Profile studentData={studentData} />;
+      case 'course':
+        return <Course studentData={studentData} />;
+      case 'subjects':
+        return <Subjects studentData={studentData} />;
+      default:
+        return <Profile studentData={studentData} />;
+    }
+  };
 
   return (
     <View style={styles.container}>
       {/* Header */}
       <View style={styles.header_text}>
-        <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => navigation.goBack()}
-        >
-          <Ionicons name="arrow-back" size={24} color="white" />
-        </TouchableOpacity>
         <Text style={styles.header_text_content}>UoV Student Care</Text>
       </View>
+
       <View style={styles.imageContainer}>
         <Image
           source={require('../assets/Logo/UoV_Logo.png')}
           style={styles.image}
         />
       </View>
-
       <ScrollView style={styles.scrollView}>
-        {/* Profile Section */}
-        <Profile studentData={studentData} />
-        {/*footer*/}
+        {/* Dynamic Content */}
+        {renderContent()}
+
+        {/* Footer text */}
+
         <View style={styles.footer_text}>
           <TouchableOpacity
             style={styles.backButton}
@@ -40,46 +50,52 @@ const Home = ({ navigation, route }) => {
             <Text style={styles.footer_text_content}>UOV@2024</Text>
           </TouchableOpacity>
         </View>
+
       </ScrollView>
 
-      {/* Footer */}
+      {/* Bottom Navigation Footer */}
       <View style={styles.footer}>
-      <TouchableOpacity
-        style={styles.footerItem}
-        onPress={() => navigation.navigate('Profile')}
-      >
-        <Ionicons
-          name={isProfileActive ? "person" : "person-outline"} 
-          size={24}
-          color={currentRoute === 'Profile' ? '4b0150' : '#4b0150'} 
-        />
-        <Text style={styles.footerText}>
-          Profile
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.footerItem}
-        onPress={() => navigation.navigate('Course')}
-      >
-        <Ionicons
-          name="school-outline"
-          size={24}
-          color={currentRoute === 'course' ? '4b0150' : '#4b0150'} 
-        />
-        <Text style={styles.footerText}>Course</Text>
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.footerItem}
+          onPress={() => setActiveTab('profile')}
+        >
+          <Ionicons
+            name={activeTab === 'profile' ? "person" : "person-outline"}
+            size={24}
+            color={activeTab === 'profile' ? '#4b0150' : '#000'}
+          />
+          <Text style={[styles.footerText, activeTab === 'profile' && { color: '#4b0150' }]}>
+            Profile
+          </Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity
-        style={styles.footerItem}
-        onPress={() => navigation.navigate('Subject')}
-      >
-        <Ionicons
-          name="book-outline"
-          size={24}
-          color={currentRoute === 'Subject' ? 'transparent' : '#4b0150'} 
-        />
-        <Text style={styles.footerText}>Subjects</Text>
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.footerItem}
+          onPress={() => setActiveTab('course')}
+        >
+          <Ionicons
+            name={activeTab === 'course' ? "school" : "school-outline"}
+            size={24}
+            color={activeTab === 'course' ? '#4b0150' : '#000'}
+          />
+          <Text style={[styles.footerText, activeTab === 'course' && { color: '#4b0150' }]}>
+            Course
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.footerItem}
+          onPress={() => setActiveTab('subjects')}
+        >
+          <Ionicons
+            name={activeTab === 'subjects' ? "book" : "book-outline"}
+            size={24}
+            color={activeTab === 'subjects' ? '#4b0150' : '#000'}
+          />
+          <Text style={[styles.footerText, activeTab === 'subjects' && { color: '#4b0150' }]}>
+            Subjects
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -107,11 +123,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginLeft: 20
   },
-  footer_text_content:{
+  footer_text_content: {
     color: '#fff',
     fontSize: 12,
     flex: 1,
-    marginLeft:100,
+    marginLeft: 100,
   },
   backButton: {
     position: 'absolute',
@@ -129,11 +145,11 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 10,
     marginBottom: 10,
-    shadowColor: '#000', 
-    shadowOffset: { width: 0, height: 4 }, 
-    shadowOpacity: 0.3, 
-    shadowRadius: 8, 
-    elevation: 5, 
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 5,
     width: '85%',
     marginLeft: 30,
   },
