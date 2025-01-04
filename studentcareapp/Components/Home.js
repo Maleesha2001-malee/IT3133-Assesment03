@@ -82,7 +82,7 @@ const ProfileScreen = ({ navigation, route }) => {
         <Ionicons
           name="person"
           size={24}
-          color={currentRoute === 'Profile' ? '#ff6347' : '#4b0150'} 
+          color={currentRoute === 'Profile' ? '#4b0150' : 'transparent'} 
         />
         <Text style={styles.footerText}>Profile</Text>
       </TouchableOpacity>
@@ -94,19 +94,19 @@ const ProfileScreen = ({ navigation, route }) => {
         <Ionicons
           name="school"
           size={24}
-          color={currentRoute === 'Course' ? '#ff6347' : '#4b0150'} 
+          color={currentRoute === 'course' ? '#ff6347' : '#4b0150'} 
         />
         <Text style={styles.footerText}>Course</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.footerItem}
-        onPress={() => navigation.navigate('Subjects')}
+        onPress={() => navigation.navigate('Subject')}
       >
         <Ionicons
           name="book"
           size={24}
-          color={currentRoute === 'Subjects' ? '#ff6347' : '#4b0150'} 
+          color={currentRoute === 'Subject' ? '#ff6347' : '#4b0150'} 
         />
         <Text style={styles.footerText}>Subjects</Text>
       </TouchableOpacity>
