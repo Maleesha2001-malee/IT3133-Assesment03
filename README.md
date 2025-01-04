@@ -80,11 +80,14 @@ Make sure to install the following dependencies:
 
 ## OutPut in LoginScreen
 
-![alt text](<Screenshot (814).png>)
+![alt text](output1.png)
 
- ![alt text](<Screenshot (815).png>)
 
- ![alt text](<Screenshot (820).png>)
+![alt text](output2.png)
+
+
+![alt text](output3.png)
+
 
 ### Home Screen
 - Bottom navigation with three tabs:
@@ -97,13 +100,13 @@ Make sure to install the following dependencies:
 
 ## OutPut Home
 
-![alt text](<Screenshot (816).png>)
+![alt text](output4.png)
 
-![alt text](<Screenshot (819).png>)
+![alt text](output5.png)
 
-![alt text](<Screenshot (817).png>)
+![alt text](output6.png)
 
- ![alt text](<Screenshot (818).png>)
+![alt text](output7.png)
 
 ### Profile Section
 - Display student personal information
@@ -113,7 +116,7 @@ Make sure to install the following dependencies:
 
 ## Output Profile Section
 
-![alt text](<Screenshot (821).png>)
+![alt text](output8.png)
 
 ### Course Section
 - Display student Course information
@@ -122,7 +125,7 @@ Make sure to install the following dependencies:
 
 ## Output Course Section
 
-![alt text](<Screenshot (822).png>)
+![alt text](output9.png)
 
 
 ### Subjects Section
@@ -134,7 +137,7 @@ Make sure to install the following dependencies:
 
 ## Output Profile Section
 
-![alt text](<Screenshot (823).png>)
+![alt text](output10.png)
 
 ### Custom Components
 - Header: App header with navigation
