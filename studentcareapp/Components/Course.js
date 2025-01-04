@@ -44,8 +44,11 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.3,
         shadowRadius: 8,
         elevation: 5,
-        width: '87%',
-        marginLeft: 30,
+        width: '90%',
+        marginLeft: 20,
+        marginTop: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     imageContainer: {
         alignItems: 'center',
@@ -69,24 +72,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 20,
     },
-    profileImage: {
-        width: 120,
-        height: 120,
-        borderRadius: 60,
-        marginBottom: 10,
-    },
     placeholderImage: {
         backgroundColor: '#f0f0f0',
         justifyContent: 'center',
         alignItems: 'center',
     },
     name: {
-        fontSize: 24,
+        fontSize: 34,
         fontWeight: 'bold',
         color: '#000',
     },
     basicInfo: {
-        fontSize: 16,
+        fontSize: 20,
         color: '#666',
         marginTop: 5,
     },
@@ -95,7 +92,7 @@ const styles = StyleSheet.create({
         marginBottom: 16,
     },
     sectionTitle: {
-        fontSize: 18,
+        fontSize: 22,
         fontWeight: 'bold',
         color: '#000',
         marginBottom: 10,
@@ -107,7 +104,7 @@ const styles = StyleSheet.create({
 
     },
     infoText: {
-        fontSize: 16,
+        fontSize: 18,
         color: '#333',
         marginVertical: 1,
     },

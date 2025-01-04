@@ -79,7 +79,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
-    marginLeft: 20
+    marginLeft: 20,
+    marginTop: 30,
   },
   footer_text_content: {
     color: '#fff',
@@ -102,8 +103,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   profileImage: {
-    width: 120,
-    height: 120,
+    width: 180,
+    height: 180,
     borderRadius: 60,
     marginBottom: 10,
   },
@@ -113,12 +114,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   name: {
-    fontSize: 24,
+    fontSize: 34,
     fontWeight: 'bold',
     color: '#000',
   },
   basicInfo: {
-    fontSize: 16,
+    fontSize: 20,
     color: '#666',
     marginTop: 5,
   },
@@ -127,10 +128,10 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   sectionTitle: {
-    fontSize: 18,
+    fontSize: 22,
     fontWeight: 'bold',
     color: '#000',
-    marginBottom: 10,
+    marginBottom: 16,
   },
   infoContent: {
     backgroundColor: '#fff',
