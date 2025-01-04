@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Icon,Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
 import Profile from './Profile';
 import Course from './Course';
@@ -26,9 +26,14 @@ const Home = ({ navigation, route }) => {
   return (
     <View style={styles.container}>
       {/* Header */}
+      <View style={styles.headerContainer}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Ionicons name="arrow-back" size={24} color="#fff" />
+        </TouchableOpacity>
       <View style={styles.header_text}>
         <Text style={styles.header_text_content}>UoV Student Care</Text>
       </View>
+    </View>
 
       <View style={styles.imageContainer}>
         <Image
@@ -105,6 +110,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#4b0150',
+    height: 60,
+    paddingHorizontal: 10,
   },
   header_text: {
     backgroundColor: '#4b0150',
