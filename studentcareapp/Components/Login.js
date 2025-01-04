@@ -31,7 +31,7 @@ const Login = ({ navigation }) => {
       (s) => s.username.toLowerCase() === username.toLowerCase()
     );
 
-    if (!student ) {
+    if (!student) {
       setError(true);
       return;
     }
@@ -48,33 +48,29 @@ const Login = ({ navigation }) => {
   };
 
   return (
-    <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled">
+    <ScrollView >
       <View style={styles.container}>
         <Text style={styles.headerText}>STUDENT LOGIN</Text>
 
         <View style={styles.inputContainer}>
           <Text style={[styles.label,
           (focusedInput === 'username' || username) ? styles.labelActive : styles.labelInactive,
-          
+
           ]}>
             Username
           </Text>
-          <TouchableOpacity
-            activeOpacity={1}
-            style={styles.usernameContainer}
-          >
-            <TextInput
-              style={[
-                styles.input,
-                styles.usernameInput,
-                styles.inputFocused,
-              ]}
-              value={username}
-              onChangeText={setUsername}
-              onFocus={() => handleFocus('username')}
-              onBlur={handleBlur}
-            />
-          </TouchableOpacity>
+          <TextInput
+            style={[
+              styles.input,
+              styles.usernameInput,
+              (focusedInput === 'username' || username) ? styles.inputFocused : null,
+            ]}
+            value={username}
+            onChangeText={setUsername}
+            onFocus={() => handleFocus('username')}
+            onBlur={handleBlur}
+          />
+
         </View>
 
         <View style={styles.inputContainer}>
@@ -83,8 +79,8 @@ const Login = ({ navigation }) => {
               style={[
                 styles.label,
                 (focusedInput === 'password' || password) ? styles.labelActive : styles.labelInactive,
-                
-                
+
+
               ]}
             >
               Password
@@ -94,7 +90,7 @@ const Login = ({ navigation }) => {
                 style={[
                   styles.input,
                   styles.passwordInput,
-                  styles.inputFocused,
+                  (focusedInput === 'password' || password) ? styles.inputFocused : null,
                 ]}
                 value={password}
                 onChangeText={setPassword}
@@ -116,43 +112,40 @@ const Login = ({ navigation }) => {
               </TouchableOpacity>
             </View>
           </View>
-         
+
 
           <TouchableOpacity style={styles.button} onPress={handleLogin}>
             <Text style={styles.buttonText}>Login</Text>
           </TouchableOpacity>
           <View style={styles.errorWrapper}>
-          {error && ( 
-            <View style={styles.errorContainer}>
-            <Ionicons
-              name="alert-circle"
-              size={20}
-              color="#8a23df"
-              style={styles.errorIcon}
-            /> <Text style={styles.errorText}> Please check the username and password
-            </Text> 
-            </View>
-          )}
-          </View>
+            {error && (
+              <View style={styles.errorContainer}>
+                <Ionicons
+                  name="alert-circle"
+                  size={21}
+                  color="#8a23df"
+                  style={styles.errorIcon}
+                /> <Text style={styles.errorText}> Please check the username and password
+                </Text>
+              </View>
+            )}
           </View>
         </View>
-     
+      </View>
+
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
     padding: 20,
   },
   headerText: {
     fontSize: 30,
     color: 'black',
-    marginBottom: 50,
+    marginBottom: 40,
   },
   inputContainer: {
     width: '100%',
@@ -162,8 +155,8 @@ const styles = StyleSheet.create({
   label: {
     position: 'absolute',
     left: 10,
-    backgroundColor: '#fff',
     paddingHorizontal: 5,
+    backgroundColor:'#fff',
     zIndex: 1,
   },
   labelInactive: {
@@ -184,12 +177,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     marginBottom: 15,
     fontSize: 16,
+    borderColor:"#000"
   },
   passwordContainer: {
     position: 'relative',
     width: '100%',
   },
   usernameContainer: {
+    position: 'relative',
     width: '100%',
   },
   passwordInput: {
@@ -214,22 +209,22 @@ const styles = StyleSheet.create({
   },
   errorWrapper: {
     flex: 1,
-    justifyContent: 'center', 
-    alignItems: 'center', 
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   errorContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 10,
     paddingHorizontal: 10,
-    paddingVertical: 5, 
+    paddingVertical: 5,
     borderRadius: 10,
     width: '75%',
     backgroundColor: '#e4cdf6',
     marginTop: 40,
-    justifyContent:'center',
+    justifyContent: 'center',
     textAlign: 'center',
-    
+
   },
   errorIcon: {
     marginRight: 5,
@@ -247,7 +242,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 5,
-    
+
   },
   buttonText: {
     color: '#fff',

@@ -1,10 +1,10 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet } from 'react-native';
+import React from 'react';
+import { StyleSheet, View, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Header from './Components/Header';
-import Login from './Components/Login';
-import Home from './Components/Home';
+import Header from './Components/Header'; // Assuming you have a Header component
+import Login from './Components/Login'; // Assuming you have a Login component
+import Home from './Components/Home'; // Assuming you have a Home component
 
 const Stack = createStackNavigator();
 
@@ -12,26 +12,25 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="LoginScreen">
-        <Stack.Screen 
-          name="LoginScreen" 
-          options={{ 
-            headerShown: false 
+        <Stack.Screen
+          name="LoginScreen"
+          options={{
+            headerShown: false,
           }}
-          component={({ navigation }) => (
-            <>
+        >
+          {({ navigation }) => (
+            <View style={styles. loginScreenContainer}>
               <Header />
               <Login navigation={navigation} />
-            </>
+            </View>
           )}
-        />
-        <Stack.Screen 
-          name="Home" 
+        </Stack.Screen>
+        <Stack.Screen
+          name="Home"
           component={Home}
-          options={{ 
+          options={{
             headerShown: false,
-            // Prevent going back to login
-            headerLeft: null,
-            gestureEnabled: false
+            gestureEnabled: false, // Disable gestures to prevent going back
           }}
         />
       </Stack.Navigator>
@@ -41,7 +40,8 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#fff',
+  loginScreenContainer: {
+    backgroundColor:'#fff',
+    height:'100%'
   },
 });
