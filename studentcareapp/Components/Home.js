@@ -2,11 +2,12 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigationState} from '@react-navigation/native';
+import Profile from './Profile'; 
 
-
-const ProfileScreen = ({ navigation, route }) => {
+const Home = ({ navigation, route }) => {
   const { studentData } = route.params;
   const currentRoute = useNavigationState(state => state.routes[state.index].name);
+  const isProfileActive = route.name === 'Profile';
 
   return (
     <View style={styles.container}>
@@ -29,39 +30,7 @@ const ProfileScreen = ({ navigation, route }) => {
 
       <ScrollView style={styles.scrollView}>
         {/* Profile Section */}
-        <View style={styles.profile}>
-          <View style={styles.profileContainer}>
-            <Image
-              source={studentData.profile_pic}
-              style={styles.profileImage}
-            />
-
-            <Text style={styles.name}>{studentData.name}</Text>
-            <Text style={styles.basicInfo}>
-              Age: {studentData.age} | Gender: {studentData.gender}
-            </Text>
-          </View>
-
-          {/* Contact Information */}
-          <View style={styles.infoSection}>
-            <Text style={styles.sectionTitle}>Contact Information</Text>
-            <View style={styles.infoContent}>
-              <Text style={styles.infoText}>Email: {studentData.email}</Text>
-              <Text style={styles.infoText}>Phone: {studentData.phone}</Text>
-              <Text style={styles.infoText}>Address: {studentData.address}</Text>
-            </View>
-          </View>
-
-          {/* Biological Information */}
-          <View style={styles.infoSection}>
-            <Text style={styles.sectionTitle}>Biological Information</Text>
-            <View style={styles.infoContent}>
-              <Text style={styles.infoText}>Gender: {studentData.gender}</Text>
-              <Text style={styles.infoText}>Age: {studentData.age}</Text>
-              <Text style={styles.infoText}>Blood Group: {studentData.bloodGroup}</Text>
-            </View>
-          </View>
-        </View>
+        <Profile studentData={studentData} />
         {/*footer*/}
         <View style={styles.footer_text}>
           <TouchableOpacity
@@ -80,21 +49,22 @@ const ProfileScreen = ({ navigation, route }) => {
         onPress={() => navigation.navigate('Profile')}
       >
         <Ionicons
-          name="person"
+          name={isProfileActive ? "person" : "person-outline"} 
           size={24}
-          color={currentRoute === 'Profile' ? '#4b0150' : 'transparent'} 
+          color={currentRoute === 'Profile' ? '4b0150' : '#4b0150'} 
         />
-        <Text style={styles.footerText}>Profile</Text>
+        <Text style={styles.footerText}>
+          Profile
+        </Text>
       </TouchableOpacity>
-
       <TouchableOpacity
         style={styles.footerItem}
         onPress={() => navigation.navigate('Course')}
       >
         <Ionicons
-          name="school"
+          name="school-outline"
           size={24}
-          color={currentRoute === 'course' ? '#ff6347' : '#4b0150'} 
+          color={currentRoute === 'course' ? '4b0150' : '#4b0150'} 
         />
         <Text style={styles.footerText}>Course</Text>
       </TouchableOpacity>
@@ -104,9 +74,9 @@ const ProfileScreen = ({ navigation, route }) => {
         onPress={() => navigation.navigate('Subject')}
       >
         <Ionicons
-          name="book"
+          name="book-outline"
           size={24}
-          color={currentRoute === 'Subject' ? '#ff6347' : '#4b0150'} 
+          color={currentRoute === 'Subject' ? 'transparent' : '#4b0150'} 
         />
         <Text style={styles.footerText}>Subjects</Text>
       </TouchableOpacity>
@@ -244,4 +214,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProfileScreen;
+export default Home;
