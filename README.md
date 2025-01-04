@@ -79,13 +79,12 @@ Make sure to install the following dependencies:
 - Show/hide password functionality
 
 ## OutPut in LoginScreen
-![alt text](Screenshot_1736003767.png) 
 
-![alt text](Screenshot_1736003738.png)
+![alt text](<Screenshot (814).png>)
 
-![alt text](Screenshot_1736003858.png)
+ ![alt text](<Screenshot (815).png>)
 
-![alt text](Screenshot_1736004726.png)
+ ![alt text](<Screenshot (820).png>)
 
 ### Home Screen
 - Bottom navigation with three tabs:
@@ -97,17 +96,14 @@ Make sure to install the following dependencies:
 - Copyright footer
 
 ## OutPut Home
-![alt text](Screenshot_1736004703.png) 
 
-![alt text](Screenshot_1736004467.png) 
+![alt text](<Screenshot (816).png>)
 
-![alt text](Screenshot_1736004334.png)
+![alt text](<Screenshot (819).png>)
 
-![alt text](Screenshot_1736004739.png) 
+![alt text](<Screenshot (817).png>)
 
-![alt text](Screenshot_1736004735.png) 
-
-![alt text](Screenshot_1736004731.png)
+ ![alt text](<Screenshot (818).png>)
 
 ### Profile Section
 - Display student personal information
@@ -117,9 +113,28 @@ Make sure to install the following dependencies:
 
 ## Output Profile Section
 
-![alt text](Screenshot_1736004334-1.png) 
+![alt text](<Screenshot (821).png>)
 
-![alt text](Screenshot_1736004331.png)
+### Course Section
+- Display student Course information
+- Corse details
+
+
+## Output Course Section
+
+![alt text](<Screenshot (822).png>)
+
+
+### Subjects Section
+- Display student Subject information
+- number Of Subject
+- Average of Subject marks
+- Student Subject Marks information
+
+
+## Output Profile Section
+
+![alt text](<Screenshot (823).png>)
 
 ### Custom Components
 - Header: App header with navigation
