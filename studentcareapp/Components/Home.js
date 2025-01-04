@@ -1,15 +1,18 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigationState} from '@react-navigation/native';
+
 
 const ProfileScreen = ({ navigation, route }) => {
   const { studentData } = route.params;
+  const currentRoute = useNavigationState(state => state.routes[state.index].name);
 
   return (
     <View style={styles.container}>
       {/* Header */}
       <View style={styles.header_text}>
-        <TouchableOpacity 
+        <TouchableOpacity
           style={styles.backButton}
           onPress={() => navigation.goBack()}
         >
@@ -18,7 +21,7 @@ const ProfileScreen = ({ navigation, route }) => {
         <Text style={styles.header_text_content}>UoV Student Care</Text>
       </View>
       <View style={styles.imageContainer}>
-        <Image 
+        <Image
           source={require('../assets/Logo/UoV_Logo.png')}
           style={styles.image}
         />
@@ -26,53 +29,87 @@ const ProfileScreen = ({ navigation, route }) => {
 
       <ScrollView style={styles.scrollView}>
         {/* Profile Section */}
-        <View style={styles.profileContainer}>
+        <View style={styles.profile}>
+          <View style={styles.profileContainer}>
             <Image
-            source={studentData.profile_pic}
-            style={styles.profileImage}
+              source={studentData.profile_pic}
+              style={styles.profileImage}
             />
-          
-          <Text style={styles.name}>{studentData.name}</Text>
-          <Text style={styles.basicInfo}>
-            Age: {studentData.age} | Gender: {studentData.gender}
-          </Text>
-        </View>
 
-        {/* Contact Information */}
-        <View style={styles.infoSection}>
-          <Text style={styles.sectionTitle}>Contact Information</Text>
-          <View style={styles.infoContent}>
-            <Text style={styles.infoText}>Email: {studentData.email}</Text>
-            <Text style={styles.infoText}>Phone: {studentData.phone}</Text>
-            <Text style={styles.infoText}>Address: {studentData.address}</Text>
+            <Text style={styles.name}>{studentData.name}</Text>
+            <Text style={styles.basicInfo}>
+              Age: {studentData.age} | Gender: {studentData.gender}
+            </Text>
+          </View>
+
+          {/* Contact Information */}
+          <View style={styles.infoSection}>
+            <Text style={styles.sectionTitle}>Contact Information</Text>
+            <View style={styles.infoContent}>
+              <Text style={styles.infoText}>Email: {studentData.email}</Text>
+              <Text style={styles.infoText}>Phone: {studentData.phone}</Text>
+              <Text style={styles.infoText}>Address: {studentData.address}</Text>
+            </View>
+          </View>
+
+          {/* Biological Information */}
+          <View style={styles.infoSection}>
+            <Text style={styles.sectionTitle}>Biological Information</Text>
+            <View style={styles.infoContent}>
+              <Text style={styles.infoText}>Gender: {studentData.gender}</Text>
+              <Text style={styles.infoText}>Age: {studentData.age}</Text>
+              <Text style={styles.infoText}>Blood Group: {studentData.bloodGroup}</Text>
+            </View>
           </View>
         </View>
-
-        {/* Biological Information */}
-        <View style={styles.infoSection}>
-          <Text style={styles.sectionTitle}>Biological Information</Text>
-          <View style={styles.infoContent}>
-            <Text style={styles.infoText}>Gender: {studentData.gender}</Text>
-            <Text style={styles.infoText}>Age: {studentData.age}</Text>
-            <Text style={styles.infoText}>Blood Group: {studentData.bloodGroup}</Text>
-          </View>
+        {/*footer*/}
+        <View style={styles.footer_text}>
+          <TouchableOpacity
+            style={styles.backButton}
+            onPress={() => navigation.goBack()}
+          >
+            <Text style={styles.footer_text_content}>UOV@2024</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
 
       {/* Footer */}
       <View style={styles.footer}>
-        <TouchableOpacity style={styles.footerItem} onPress={() => navigation.navigate('Profile')}>
-          <Ionicons name="person" size={24} color="#4b0150" />
-          <Text style={styles.footerText}>Profile</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.footerItem} onPress={() => navigation.navigate('Course')}>
-          <Ionicons name="school" size={24} color="#4b0150" />
-          <Text style={styles.footerText}>Course</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.footerItem} onPress={() => navigation.navigate('Subjects')}>
-          <Ionicons name="book" size={24} color="#4b0150" />
-          <Text style={styles.footerText}>Subjects</Text>
-        </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.footerItem}
+        onPress={() => navigation.navigate('Profile')}
+      >
+        <Ionicons
+          name="person"
+          size={24}
+          color={currentRoute === 'Profile' ? '#ff6347' : '#4b0150'} 
+        />
+        <Text style={styles.footerText}>Profile</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={styles.footerItem}
+        onPress={() => navigation.navigate('Course')}
+      >
+        <Ionicons
+          name="school"
+          size={24}
+          color={currentRoute === 'Course' ? '#ff6347' : '#4b0150'} 
+        />
+        <Text style={styles.footerText}>Course</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={styles.footerItem}
+        onPress={() => navigation.navigate('Subjects')}
+      >
+        <Ionicons
+          name="book"
+          size={24}
+          color={currentRoute === 'Subjects' ? '#ff6347' : '#4b0150'} 
+        />
+        <Text style={styles.footerText}>Subjects</Text>
+      </TouchableOpacity>
       </View>
     </View>
   );
@@ -91,6 +128,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 16,
   },
+  footer_text: {
+    backgroundColor: '#4b0150',
+    width: '90%',
+    height: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+    marginLeft: 20
+  },
+  footer_text_content:{
+    color: '#fff',
+    fontSize: 12,
+    flex: 1,
+    marginLeft:100,
+  },
   backButton: {
     position: 'absolute',
     left: 16,
@@ -101,6 +153,19 @@ const styles = StyleSheet.create({
     fontSize: 22,
     flex: 1,
     textAlign: 'center',
+  },
+  profile: {
+    backgroundColor: '#fff',
+    borderRadius: 8,
+    padding: 10,
+    marginBottom: 10,
+    shadowColor: '#000', 
+    shadowOffset: { width: 0, height: 4 }, 
+    shadowOpacity: 0.3, 
+    shadowRadius: 8, 
+    elevation: 5, 
+    width: '85%',
+    marginLeft: 30,
   },
   imageContainer: {
     alignItems: 'center',
@@ -141,7 +206,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   infoSection: {
-    padding: 16,
+    padding: 1,
     marginHorizontal: 16,
     marginBottom: 16,
   },
