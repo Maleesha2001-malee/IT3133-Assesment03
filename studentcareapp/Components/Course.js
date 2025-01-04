@@ -28,6 +28,7 @@ const Course = ({ studentData }) => {
             </View>
             <View style={styles.verticalLine} />
         </View>
+        
 
     )
 };

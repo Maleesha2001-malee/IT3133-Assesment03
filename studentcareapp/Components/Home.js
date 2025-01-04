@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
-import { Icon,Ionicons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useState } from 'react';
 import Profile from './Profile';
 import Course from './Course';
@@ -28,12 +29,12 @@ const Home = ({ navigation, route }) => {
       {/* Header */}
       <View style={styles.headerContainer}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Ionicons name="arrow-back" size={24} color="#fff" />
+          <Ionicons name="arrow-back" size={24} color="#fff" />
         </TouchableOpacity>
-      <View style={styles.header_text}>
-        <Text style={styles.header_text_content}>UoV Student Care</Text>
+        <View style={styles.header_text}>
+          <Text style={styles.header_text_content}>UoV Student Care</Text>
+        </View>
       </View>
-    </View>
 
       <View style={styles.imageContainer}>
         <Image
@@ -45,21 +46,15 @@ const Home = ({ navigation, route }) => {
         {/* Dynamic Content */}
         {renderContent()}
 
-        {/* Footer text */}
-
-        <View style={styles.footer_text}>
-          <TouchableOpacity
-            style={styles.backButton}
-            onPress={() => navigation.goBack()}
-          >
-            <Text style={styles.footer_text_content}>UOV@2024</Text>
-          </TouchableOpacity>
-        </View>
-
       </ScrollView>
+      {activeTab !== 'profile' && (
+        <View style={styles.footer_text}>
+          <Text style={styles.footer_text_content}>UOV {'\u00A9'} 2024</Text>
+        </View>
+      )}
 
-      {/* Bottom Navigation Footer */}
-      <View style={styles.footer}>
+  {/* Bottom Navigation Footer */ }
+  < View style = { styles.footer } >
         <TouchableOpacity
           style={styles.footerItem}
           onPress={() => setActiveTab('profile')}
@@ -101,8 +96,8 @@ const Home = ({ navigation, route }) => {
             Subjects
           </Text>
         </TouchableOpacity>
-      </View>
-    </View>
+      </View >
+    </View >
   );
 };
 
@@ -133,13 +128,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
-    marginLeft: 20
+    marginLeft: 20,
   },
   footer_text_content: {
     color: '#fff',
     fontSize: 12,
     flex: 1,
-    marginLeft: 100,
+    marginTop:5,
   },
   backButton: {
     position: 'absolute',

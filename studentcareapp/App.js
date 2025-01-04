@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, View, StatusBar } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import { StyleSheet, View, StatusBar, KeyboardAvoidingView, ScrollView, Platform, Keyboard } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Header from './Components/Header'; 
@@ -10,6 +10,23 @@ import Footer from './Components/Footer';
 const Stack = createStackNavigator();
 
 export default function App() {
+  const scrollViewRef = useRef(null);
+
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', () => {
+      scrollViewRef.current?.scrollTo({ y: 0, animated: true });
+    });
+
+    const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => {
+      scrollViewRef.current?.scrollTo({ y: 0, animated: true });
+    });
+
+    return () => {
+      keyboardDidHideListener.remove();
+      keyboardDidShowListener.remove();
+    };
+  }, []);
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="LoginScreen">
@@ -21,9 +38,20 @@ export default function App() {
         >
           {({ navigation }) => (
             <View style={styles.loginScreenContainer}>
-              <Header />
-              <Login navigation={navigation} />
-              <Footer style={styles.footerContainer}/> 
+              <KeyboardAvoidingView
+                style={{ flex: 1 }}
+                behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+              >
+                <ScrollView
+                  ref={scrollViewRef}
+                  contentContainerStyle={{ flexGrow: 1 }}
+                  keyboardShouldPersistTaps="handled"
+                >
+                  <Header />
+                  <Login navigation={navigation} />
+                </ScrollView>
+                <Footer style={styles.footerContainer} />
+              </KeyboardAvoidingView>
             </View>
           )}
         </Stack.Screen>
@@ -43,14 +71,15 @@ export default function App() {
 
 const styles = StyleSheet.create({
   loginScreenContainer: {
-    position: 'absolute',
     backgroundColor: '#fff',
     height: '100%',
   },
-  footerContainer:{
+  footerContainer: {
     position: 'absolute',
     alignItems: 'center',
-    justifyContent:'center',
-    
+    justifyContent: 'center',
+    bottom: 0, 
+    left: 0,
+    right: 0,
   },
 });

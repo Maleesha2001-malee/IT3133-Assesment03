@@ -4,39 +4,45 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 
 const Course = ({ studentData }) => {
   return (
-    <View style={styles.profile}>
-    <View style={styles.profileContainer}>
-      <Image
-        source={studentData.profile_pic}
-        style={styles.profileImage}
-      />
+    <>
+      <View style={styles.profile}>
+        <View style={styles.profileContainer}>
+          <Image
+            source={studentData.profile_pic}
+            style={styles.profileImage}
+          />
 
-      <Text style={styles.name}>{studentData.name}</Text>
-      <Text style={styles.basicInfo}>
-        Age: {studentData.age} | Gender: {studentData.gender}
-      </Text>
-    </View>
-    <View style={styles.verticalLine} />
-    {/* Contact Information */}
-    <View style={styles.infoSection}>
-      <Text style={styles.sectionTitle}>Contact Information</Text>
-      <View style={styles.infoContent}>
-        <Text style={styles.infoText}>Email: {studentData.email}</Text>
-        <Text style={styles.infoText}>Phone: {studentData.phone}</Text>
-        <Text style={styles.infoText}>Address: {studentData.address}</Text>
-      </View>
-    </View>
+          <Text style={styles.name}>{studentData.name}</Text>
+          <Text style={styles.basicInfo}>
+            Age: {studentData.age} | Gender: {studentData.gender}
+          </Text>
+        </View>
+        <View style={styles.verticalLine} />
+        {/* Contact Information */}
+        <View style={styles.infoSection}>
+          <Text style={styles.sectionTitle}>Contact Information</Text>
+          <View style={styles.infoContent}>
+            <Text style={styles.infoText}>Email: {studentData.email}</Text>
+            <Text style={styles.infoText}>Phone: {studentData.phone}</Text>
+            <Text style={styles.infoText}>Address: {studentData.address}</Text>
+          </View>
+        </View>
 
-    {/* Biological Information */}
-    <View style={styles.infoSection}>
-      <Text style={styles.sectionTitle}>Biological Information</Text>
-      <View style={styles.infoContent}>
-        <Text style={styles.infoText}>Gender: {studentData.gender}</Text>
-        <Text style={styles.infoText}>Age: {studentData.age}</Text>
-        <Text style={styles.infoText}>Blood Group: {studentData.blood_group}</Text>
+        {/* Biological Information */}
+        <View style={styles.infoSection}>
+          <Text style={styles.sectionTitle}>Biological Information</Text>
+          <View style={styles.infoContent}>
+            <Text style={styles.infoText}>Gender: {studentData.gender}</Text>
+            <Text style={styles.infoText}>Age: {studentData.age}</Text>
+            <Text style={styles.infoText}>Blood Group: {studentData.blood_group}</Text>
+          </View>
+        </View>
       </View>
-    </View>
-  </View>
+      <View style={styles.footer_text}>
+                <Text style={styles.footer_text_content}>UOV {'\u00A9'}  2024</Text>
+              </View>
+      </>
+      
   );
 };
 
@@ -46,11 +52,11 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 10,
     marginBottom: 10,
-    shadowColor: '#000', 
-    shadowOffset: { width: 0, height: 4 }, 
-    shadowOpacity: 0.3, 
-    shadowRadius: 8, 
-    elevation: 5, 
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 5,
     width: '87%',
     marginLeft: 30,
   },
@@ -60,11 +66,28 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   verticalLine: {
-    width: "85%",          
+    width: "85%",
     backgroundColor: '#ddd',
-    height: 2,     
-    marginHorizontal: 15, 
-    marginBottom:10,
+    height: 2,
+    marginHorizontal: 15,
+    marginBottom: 10,
+  },
+  footer_text: {
+    backgroundColor: '#4b0150',
+    width: '90%',
+    height: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+    marginLeft: 20
+  },
+  footer_text_content: {
+    color: '#fff',
+    fontSize: 12,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop:5,
   },
   image: {
     width: 350,
