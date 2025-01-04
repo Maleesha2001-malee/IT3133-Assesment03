@@ -182,7 +182,7 @@ This project is licensed under the UoV © 2024
 
 ## Support
 
-For support, please contact [support email]
+For support, please contact maleesharathnayake840@gmail.com
 
 ## Development Notes
 
