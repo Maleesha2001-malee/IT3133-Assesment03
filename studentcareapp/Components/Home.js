@@ -1,30 +1,79 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/Ionicons'; // Use Ionicons for the back arrow
+import { Ionicons } from '@expo/vector-icons';
 
-const Home = ({ route }) => {
+const ProfileScreen = ({ navigation, route }) => {
   const { studentData } = route.params;
-  const navigation = useNavigation(); // Hook for navigation
 
   return (
     <View style={styles.container}>
-      {/* Header Section */}
-      <View style={styles.headerContainer}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Icon name="arrow-back" size={15} color="#fff" style={styles.icontext}/>
+      {/* Header */}
+      <View style={styles.header_text}>
+        <TouchableOpacity 
+          style={styles.backButton}
+          onPress={() => navigation.goBack()}
+        >
+          <Ionicons name="arrow-back" size={24} color="white" />
         </TouchableOpacity>
-        <Text style={styles.headerText}>UoV Student Care</Text>
+        <Text style={styles.header_text_content}>UoV Student Care</Text>
+      </View>
+      <View style={styles.imageContainer}>
+        <Image 
+          source={require('../assets/Logo/UoV_Logo.png')}
+          style={styles.image}
+        />
       </View>
 
-      {/* Content Section */}
-      <ScrollView contentContainerStyle={styles.contentContainer}>
-        <View style={styles.profileSection}>
-          <Image source={studentData.profile_pic} style={styles.profileImage} />
-          <Text style={styles.nameText}>Welcome, {studentData.name}!</Text>
-          <Text style={styles.emailText}>{studentData.email}</Text>
+      <ScrollView style={styles.scrollView}>
+        {/* Profile Section */}
+        <View style={styles.profileContainer}>
+            <Image
+            source={studentData.profile_pic}
+            style={styles.profileImage}
+            />
+          
+          <Text style={styles.name}>{studentData.name}</Text>
+          <Text style={styles.basicInfo}>
+            Age: {studentData.age} | Gender: {studentData.gender}
+          </Text>
+        </View>
+
+        {/* Contact Information */}
+        <View style={styles.infoSection}>
+          <Text style={styles.sectionTitle}>Contact Information</Text>
+          <View style={styles.infoContent}>
+            <Text style={styles.infoText}>Email: {studentData.email}</Text>
+            <Text style={styles.infoText}>Phone: {studentData.phone}</Text>
+            <Text style={styles.infoText}>Address: {studentData.address}</Text>
+          </View>
+        </View>
+
+        {/* Biological Information */}
+        <View style={styles.infoSection}>
+          <Text style={styles.sectionTitle}>Biological Information</Text>
+          <View style={styles.infoContent}>
+            <Text style={styles.infoText}>Gender: {studentData.gender}</Text>
+            <Text style={styles.infoText}>Age: {studentData.age}</Text>
+            <Text style={styles.infoText}>Blood Group: {studentData.bloodGroup}</Text>
+          </View>
         </View>
       </ScrollView>
+
+      {/* Footer */}
+      <View style={styles.footer}>
+        <TouchableOpacity style={styles.footerItem} onPress={() => navigation.navigate('Profile')}>
+          <Ionicons name="person" size={24} color="#4b0150" />
+          <Text style={styles.footerText}>Profile</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.footerItem} onPress={() => navigation.navigate('Course')}>
+          <Ionicons name="school" size={24} color="#4b0150" />
+          <Text style={styles.footerText}>Course</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.footerItem} onPress={() => navigation.navigate('Subjects')}>
+          <Ionicons name="book" size={24} color="#4b0150" />
+          <Text style={styles.footerText}>Subjects</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -34,47 +83,100 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  headerContainer: {
+  header_text: {
+    backgroundColor: '#4b0150',
+    width: '100%',
+    height: 60,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#4b0150',
-    height: 60,
-    paddingHorizontal: 10,
+    paddingHorizontal: 16,
   },
-  icontext:{
-    marginTop:15
+  backButton: {
+    position: 'absolute',
+    left: 16,
+    zIndex: 1,
   },
-  headerText: {
+  header_text_content: {
     color: '#fff',
     fontSize: 22,
+    flex: 1,
     textAlign: 'center',
-    marginTop: 10,
-    marginLeft:80,
   },
-  contentContainer: {
-    flexGrow: 1,
+  imageContainer: {
     alignItems: 'center',
-    padding: 20,
+    width: '100%',
+    marginVertical: 10,
   },
-  profileSection: {
+  image: {
+    width: 350,
+    height: 100,
+    resizeMode: 'contain',
+  },
+  scrollView: {
+    flex: 1,
+  },
+  profileContainer: {
     alignItems: 'center',
-    marginVertical: 20,
+    marginBottom: 20,
   },
   profileImage: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
+    width: 120,
+    height: 120,
+    borderRadius: 60,
     marginBottom: 10,
   },
-  nameText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#4b0150',
+  placeholderImage: {
+    backgroundColor: '#f0f0f0',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  emailText: {
+  name: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#000',
+  },
+  basicInfo: {
     fontSize: 16,
-    color: '#555',
+    color: '#666',
+    marginTop: 5,
+  },
+  infoSection: {
+    padding: 16,
+    marginHorizontal: 16,
+    marginBottom: 16,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#000',
+    marginBottom: 10,
+  },
+  infoContent: {
+    backgroundColor: '#fff',
+    borderRadius: 8,
+  },
+  infoText: {
+    fontSize: 16,
+    color: '#333',
+    marginVertical: 4,
+  },
+  footer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    paddingVertical: 16,
+    borderTopWidth: 1,
+    borderTopColor: '#eee',
+    borderTopColor: '#eee',
+    backgroundColor: '#fff',
+  },
+  footerItem: {
+    alignItems: 'center',
+  },
+  footerText: {
+    color: '#4b0150',
+    marginTop: 4,
+    fontSize: 12,
   },
 });
 
-export default Home;
+export default ProfileScreen;
