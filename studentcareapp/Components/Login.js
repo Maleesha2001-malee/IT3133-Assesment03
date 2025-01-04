@@ -5,7 +5,6 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
-  Alert,
   ScrollView,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -43,12 +42,12 @@ const Login = ({ navigation }) => {
 
     // Successful login
     setError(false);
-    Alert.alert('Login Successful!', `Welcome, ${student.name}!`);
     navigation.navigate('Home', { studentData: student });
   };
 
   return (
-    <ScrollView >
+    
+    <ScrollView contentContainerStyle={styles.scrollContainer} keyboardShouldPersistTaps="handled">
       <View style={styles.container}>
         <Text style={styles.headerText}>STUDENT LOGIN</Text>
 
@@ -69,6 +68,7 @@ const Login = ({ navigation }) => {
             onChangeText={setUsername}
             onFocus={() => handleFocus('username')}
             onBlur={handleBlur}
+            keyboardType="default"
           />
 
         </View>
@@ -97,11 +97,12 @@ const Login = ({ navigation }) => {
                 secureTextEntry={!showPassword}
                 onFocus={() => handleFocus('password')}
                 onBlur={handleBlur}
+                keyboardType="default"
               />
               <TouchableOpacity
                 style={styles.eyeIconContainer}
                 onPress={() => setShowPassword(!showPassword)}
-                hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }} 
               >
                 <Ionicons
                   name={showPassword ? 'eye-off' : 'eye'}
@@ -134,10 +135,17 @@ const Login = ({ navigation }) => {
       </View>
 
     </ScrollView>
+    
+    
   );
 };
 
 const styles = StyleSheet.create({
+  scrollContainer: {
+    flexGrow: 1,
+    backgroundColor: '#fff',
+    alignItems: 'stretch', 
+},
   container: {
     alignItems: 'center',
     padding: 20,
@@ -145,7 +153,7 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 30,
     color: 'black',
-    marginBottom: 40,
+    marginBottom: 100,
   },
   inputContainer: {
     width: '100%',
@@ -173,7 +181,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 45,
     borderWidth: 1,
-    borderRadius: 8,
+    borderRadius: 6,
     paddingHorizontal: 15,
     marginBottom: 15,
     fontSize: 16,

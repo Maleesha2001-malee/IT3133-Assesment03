@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 22,
     textAlign: 'center',
-    marginTop: 20,
+    marginTop: 10,
   },
   imageContainer: {
     alignItems: 'center',

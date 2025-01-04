@@ -2,9 +2,10 @@ import React from 'react';
 import { StyleSheet, View, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Header from './Components/Header'; // Assuming you have a Header component
-import Login from './Components/Login'; // Assuming you have a Login component
-import Home from './Components/Home'; // Assuming you have a Home component
+import Header from './Components/Header'; 
+import Login from './Components/Login'; 
+import Home from './Components/Home';
+import Footer from './Components/Footer'; 
 
 const Stack = createStackNavigator();
 
@@ -19,9 +20,10 @@ export default function App() {
           }}
         >
           {({ navigation }) => (
-            <View style={styles. loginScreenContainer}>
+            <View style={styles.loginScreenContainer}>
               <Header />
               <Login navigation={navigation} />
+              <Footer style={styles.footerContainer}/> 
             </View>
           )}
         </Stack.Screen>
@@ -30,7 +32,7 @@ export default function App() {
           component={Home}
           options={{
             headerShown: false,
-            gestureEnabled: false, // Disable gestures to prevent going back
+            gestureEnabled: false, 
           }}
         />
       </Stack.Navigator>
@@ -41,7 +43,14 @@ export default function App() {
 
 const styles = StyleSheet.create({
   loginScreenContainer: {
-    backgroundColor:'#fff',
-    height:'100%'
+    position: 'absolute',
+    backgroundColor: '#fff',
+    height: '100%',
+  },
+  footerContainer:{
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent:'center',
+    
   },
 });
