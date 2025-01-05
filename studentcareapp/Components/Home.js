@@ -43,8 +43,9 @@ const Home = ({ navigation, route }) => {
       </View>
       <ScrollView style={styles.scrollView}>
         {/* Dynamic Content */}
+        
         {renderContent()}
-
+       
       </ScrollView>
       {activeTab !== 'profile' && (
         <View style={styles.footer_text}>
@@ -172,6 +173,7 @@ const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
   },
+ 
   profileContainer: {
     alignItems: 'center',
     marginBottom: 20,

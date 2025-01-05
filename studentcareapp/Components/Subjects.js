@@ -43,7 +43,6 @@ const Subjects = ({ studentData }) => {
                     </View>
                 </View>
                 <View style={styles.verticalLine1} />
-                <ScrollView>
                 <FlatList
                     data={subjectsWithMarks}
                     keyExtractor={(item, index) => index.toString()}
@@ -60,7 +59,7 @@ const Subjects = ({ studentData }) => {
                         </View>
                     )}
                 />
-                </ScrollView>
+               
             </View>
         </View>
     );
