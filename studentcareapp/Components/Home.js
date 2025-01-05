@@ -62,7 +62,7 @@ const Home = ({ navigation, route }) => {
           <Ionicons
             name={activeTab === 'profile' ? "person" : "person-outline"}
             size={24}
-            color={activeTab === 'profile' ? '#4b0150' : '#000'}
+            color={activeTab === 'profile' ? '#4b0150' : '4b0150'}
           />
           <Text style={[styles.footerText, activeTab === 'profile' && { color: '#4b0150' }]}>
             Profile
@@ -76,7 +76,7 @@ const Home = ({ navigation, route }) => {
           <Ionicons
             name={activeTab === 'course' ? "school" : "school-outline"}
             size={24}
-            color={activeTab === 'course' ? '#4b0150' : '#000'}
+            color={activeTab === 'course' ? '#4b0150' : '#4b0150'}
           />
           <Text style={[styles.footerText, activeTab === 'course' && { color: '#4b0150' }]}>
             Course
@@ -90,7 +90,7 @@ const Home = ({ navigation, route }) => {
           <Ionicons
             name={activeTab === 'subjects' ? "book" : "book-outline"}
             size={24}
-            color={activeTab === 'subjects' ? '#4b0150' : '#000'}
+            color={activeTab === 'subjects' ? '#4b0150' : '#4b0150'}
           />
           <Text style={[styles.footerText, activeTab === 'subjects' && { color: '#4b0150' }]}>
             Subjects
