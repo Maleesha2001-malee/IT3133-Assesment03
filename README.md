@@ -104,9 +104,9 @@ Make sure to install the following dependencies:
 
 ![alt text](output5.png)
 
-![alt text](output6.png) 
+ ![alt text](output6.png)
 
-![alt text](output7.png)
+ ![alt text](output7.png)
 
 ### Profile Section
 - Display student personal information
