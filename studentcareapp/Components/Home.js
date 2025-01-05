@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
 import Profile from './Profile';
 import Course from './Course';
