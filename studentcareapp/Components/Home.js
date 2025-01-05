@@ -62,7 +62,7 @@ const Home = ({ navigation, route }) => {
           <Ionicons
             name={activeTab === 'profile' ? "person" : "person-outline"}
             size={24}
-            color={activeTab === 'profile' ? '#4b0150' : '4b0150'}
+            color={activeTab === 'profile' ? '#4b0150' : '#4b0150'}
           />
           <Text style={[styles.footerText, activeTab === 'profile' && { color: '#4b0150' }]}>
             Profile
