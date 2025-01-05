@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { courses, subjects, marks } from '../data/StudentDb'
 
-const Subject = ({ studentData }) => {
+const Subjects = ({ studentData }) => {
     const studentCourse = courses.find(course => course.id === studentData.course_id);
     const courseSubject = subjects.filter(subjects => subjects.course_id === studentData.id);
     const studentMarks = marks.filter(mark => mark.student_id === studentData.id);
@@ -188,4 +188,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Subject;
+export default Subjects;
