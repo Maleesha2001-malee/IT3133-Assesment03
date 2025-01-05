@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useState } from 'react';
 import Profile from './Profile';
 import Course from './Course';
@@ -187,36 +186,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#f0f0f0',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  name: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#000',
-  },
-  basicInfo: {
-    fontSize: 16,
-    color: '#666',
-    marginTop: 5,
-  },
-  infoSection: {
-    padding: 1,
-    marginHorizontal: 16,
-    marginBottom: 16,
-  },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#000',
-    marginBottom: 10,
-  },
-  infoContent: {
-    backgroundColor: '#fff',
-    borderRadius: 8,
-  },
-  infoText: {
-    fontSize: 16,
-    color: '#333',
-    marginVertical: 4,
   },
   footer: {
     flexDirection: 'row',

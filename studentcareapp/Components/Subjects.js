@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, FlatList, ScrollView } from 'react-native';
 import { courses, subjects, marks } from '../data/StudentDb'
 
 const Subjects = ({ studentData }) => {
@@ -43,6 +43,7 @@ const Subjects = ({ studentData }) => {
                     </View>
                 </View>
                 <View style={styles.verticalLine1} />
+                <ScrollView>
                 <FlatList
                     data={subjectsWithMarks}
                     keyExtractor={(item, index) => index.toString()}
@@ -59,6 +60,7 @@ const Subjects = ({ studentData }) => {
                         </View>
                     )}
                 />
+                </ScrollView>
             </View>
         </View>
     );
