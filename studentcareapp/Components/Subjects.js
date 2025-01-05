@@ -1,12 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, FlatList, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { courses, subjects, marks } from '../data/StudentDb'
 
 const Subjects = ({ studentData }) => {
     const studentCourse = courses.find(course => course.id === studentData.course_id);
     const courseSubject = subjects.filter(subjects => subjects.course_id === studentData.id);
     const studentMarks = marks.filter(mark => mark.student_id === studentData.id);
-
 
     const totalMarks = studentMarks.reduce((acc, mark) => acc + mark.marks, 0);
     const averageMarks = studentMarks.length > 0 ? (totalMarks / studentMarks.length).toFixed(0) : 0;
@@ -19,19 +18,19 @@ const Subjects = ({ studentData }) => {
         };
     });
 
-    return (
-        <View style={styles.profile}>
+    const ListHeaderComponent = () => (
+        <>
             <View style={styles.profileContainer}>
                 <Text style={styles.name}>{studentCourse.name}</Text>
                 {courseSubject.length > 0 && (
                     <Text style={styles.basicInfo}>
                         {courseSubject.length} Subjects | Average  {averageMarks}
-                    </Text>)}
+                    </Text>
+                )}
             </View>
 
             <View style={styles.verticalLine} />
 
-            {/* marks Information*/}
             <View style={styles.infoSection}>
                 <Text style={styles.sectionTitle}>Marks Information</Text>
                 <View style={[styles.row1, styles.headerRow]}>
@@ -43,24 +42,30 @@ const Subjects = ({ studentData }) => {
                     </View>
                 </View>
                 <View style={styles.verticalLine1} />
-                <FlatList
-                    data={subjectsWithMarks}
-                    keyExtractor={(item, index) => index.toString()}
-                    renderItem={({ item, index }) => (
-
-                        <View style={styles.row}>
-                            <View style={styles.column}>
-                                <Text style={styles.subject}>{item.subjectName}</Text>
-                            </View>
-                            <View style={styles.column}>
-                                <Text style={styles.marks}>{item.marks}</Text>
-                            </View>
-                            
-                        </View>
-                    )}
-                />
-               
             </View>
+        </>
+    );
+
+    const renderItem = ({ item }) => (
+        <View style={styles.row}>
+            <View style={styles.column}>
+                <Text style={styles.subject}>{item.subjectName}</Text>
+            </View>
+            <View style={styles.column}>
+                <Text style={styles.marks}>{item.marks}</Text>
+            </View>
+        </View>
+    );
+
+    return (
+        <View style={styles.profile}>
+            <FlatList
+                data={subjectsWithMarks}
+                keyExtractor={(item, index) => index.toString()}
+                renderItem={renderItem}
+                ListHeaderComponent={ListHeaderComponent}
+                contentContainerStyle={{ paddingBottom: 10 }}
+            />
         </View>
     );
 };
