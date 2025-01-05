@@ -61,7 +61,7 @@ const Subjects = ({ studentData }) => {
         <View style={styles.profile}>
             <FlatList
                 data={subjectsWithMarks}
-                keyExtractor={(item, index) => index.toString()}
+                keyExtractor={(index) => index.toString()}
                 renderItem={renderItem}
                 ListHeaderComponent={ListHeaderComponent}
                 contentContainerStyle={{ paddingBottom: 10 }}
@@ -85,19 +85,6 @@ const styles = StyleSheet.create({
         marginLeft: 20,
         marginTop: 50,
     },
-    imageContainer: {
-        alignItems: 'center',
-        width: '100%',
-        marginVertical: 10,
-    },
-    image: {
-        width: 350,
-        height: 100,
-        resizeMode: 'contain',
-    },
-    scrollView: {
-        flex: 1,
-    },
     verticalLine: {
         width: "80%",
         backgroundColor: '#ccc',
@@ -114,12 +101,6 @@ const styles = StyleSheet.create({
     profileContainer: {
         alignItems: 'center',
         marginBottom: 20,
-    },
-    
-    placeholderImage: {
-        backgroundColor: '#f0f0f0',
-        justifyContent: 'center',
-        alignItems: 'center',
     },
     name: {
         fontSize: 30,
