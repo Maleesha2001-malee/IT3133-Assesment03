@@ -50,6 +50,7 @@ git clone https://github.com/Maleesha2001-malee/IT3133-Assesment03.git
 2. Install dependencies:
 ```bash
 npm install
+npm install react-native-web react-dom react-scripts
 ```
 
 3. Run the application:

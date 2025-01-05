@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity, Platform } from 'react-native';
 import { useState } from 'react';
 import Profile from './Profile';
 import Course from './Course';
@@ -8,6 +8,7 @@ import Subjects from './Subjects';
 const Home = ({ navigation, route }) => {
   const { studentData } = route.params || {};
   const [activeTab, setActiveTab] = useState('profile');
+  const isWeb = Platform.OS === 'web';
 
   const renderContent = () => {
     switch (activeTab) {
