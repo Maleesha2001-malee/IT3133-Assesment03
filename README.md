@@ -100,11 +100,11 @@ Make sure to install the following dependencies:
 
 ## OutPut Home
 
-![alt text](output4.png)
+![alt text](output4.png) 
 
 ![alt text](output5.png)
 
-![alt text](output6.png)
+![alt text](output6.png) 
 
 ![alt text](output7.png)
 
