@@ -53,8 +53,5 @@ const styles = StyleSheet.create({
     position: 'absolute',
     alignItems: 'center',
     justifyContent: 'center',
-    bottom: 0,
-    left: 0,
-    right: 0,
   },
 });
