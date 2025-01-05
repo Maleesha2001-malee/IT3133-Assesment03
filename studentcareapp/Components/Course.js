@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet} from 'react-native';
 import { courses } from '../data/StudentDb'
 
 const Course = ({ studentData }) => {
@@ -50,16 +50,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    imageContainer: {
-        alignItems: 'center',
-        width: '100%',
-        marginVertical: 10,
-    },
-    image: {
-        width: 350,
-        height: 100,
-        resizeMode: 'contain',
-    },
     verticalLine: {
         width: "85%",
         backgroundColor: '#ccc',
@@ -67,15 +57,9 @@ const styles = StyleSheet.create({
         marginHorizontal: 15,
         marginBottom: 10,
     },
-
     profileContainer: {
         alignItems: 'center',
         marginBottom: 20,
-    },
-    placeholderImage: {
-        backgroundColor: '#f0f0f0',
-        justifyContent: 'center',
-        alignItems: 'center',
     },
     name: {
         fontSize: 34,
@@ -107,17 +91,6 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: '#333',
         marginVertical: 1,
-    },
-    row: {
-        flexDirection: 'row',
-        marginBottom: 20,
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginHorizontal: 15,
-    },
-    subject: {
-        fontSize: 18,
-        color: '#000',
     },
 });
 
