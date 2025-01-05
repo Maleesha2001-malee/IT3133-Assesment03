@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 
-const Course = ({ studentData }) => {
+const Profile = ({ studentData }) => {
   return (
     <>
       <View style={styles.profile}>
@@ -143,4 +143,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Course;
+export default Profile;
