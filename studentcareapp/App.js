@@ -1,31 +1,15 @@
 import React, { useEffect, useRef } from 'react';
-import { StyleSheet, View, StatusBar, KeyboardAvoidingView, ScrollView, Platform, Keyboard } from 'react-native';
+import { StyleSheet, View, StatusBar, ScrollView} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Header from './Components/Header'; 
-import Login from './Components/Login'; 
+import Header from './Components/Header';
+import Login from './Components/Login';
 import Home from './Components/Home';
-import Footer from './Components/Footer'; 
+import Footer from './Components/Footer';
 
 const Stack = createStackNavigator();
 
 export default function App() {
-  const scrollViewRef = useRef(null);
-
-  useEffect(() => {
-    const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', () => {
-      scrollViewRef.current?.scrollTo({ y: 0, animated: true });
-    });
-
-    const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => {
-      scrollViewRef.current?.scrollTo({ y: 0, animated: true });
-    });
-
-    return () => {
-      keyboardDidHideListener.remove();
-      keyboardDidShowListener.remove();
-    };
-  }, []);
 
   return (
     <NavigationContainer>
@@ -38,20 +22,11 @@ export default function App() {
         >
           {({ navigation }) => (
             <View style={styles.loginScreenContainer}>
-              <KeyboardAvoidingView
-                style={{ flex: 1 }}
-                behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-              >
-                <ScrollView
-                  ref={scrollViewRef}
-                  contentContainerStyle={{ flexGrow: 1 }}
-                  keyboardShouldPersistTaps="handled"
-                >
+                <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                   <Header />
                   <Login navigation={navigation} />
                 </ScrollView>
                 <Footer style={styles.footerContainer} />
-              </KeyboardAvoidingView>
             </View>
           )}
         </Stack.Screen>
@@ -60,7 +35,7 @@ export default function App() {
           component={Home}
           options={{
             headerShown: false,
-            gestureEnabled: false, 
+            gestureEnabled: false,
           }}
         />
       </Stack.Navigator>
@@ -78,7 +53,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     alignItems: 'center',
     justifyContent: 'center',
-    bottom: 0, 
+    bottom: 0,
     left: 0,
     right: 0,
   },
