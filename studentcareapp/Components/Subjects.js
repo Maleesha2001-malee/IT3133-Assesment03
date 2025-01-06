@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 15,
     },
     column: {
-        flex: 0,
+        flex: 1,
 
     },
     column1: {
