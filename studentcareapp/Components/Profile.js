@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     textAlign: 'center',
     marginLeft: 20,
-    marginTop: 20,
+    marginTop: 25,
     marginBottom:10,
   },
   footer_text_content: {
