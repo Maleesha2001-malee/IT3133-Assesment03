@@ -37,10 +37,12 @@ const Profile = ({ studentData }) => {
           </View>
         </View>
       </View>
-      <View style={styles.footer_text}>
-                <Text style={styles.footer_text_content}>UOV {'\u00A9'}  2024</Text>
-              </View>
-      </>
+      
+     
+       <View style={styles.footer_text}>
+       <Text style={styles.footer_text_content}>UOV {'\u00A9'}  2024</Text>
+     </View>
+</>
       
   );
 };

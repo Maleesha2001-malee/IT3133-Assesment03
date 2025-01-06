@@ -58,6 +58,7 @@ const Subjects = ({ studentData }) => {
     );
 
     return (
+        <>
         <View style={styles.profile}>
             <FlatList
                 data={subjectsWithMarks}
@@ -67,6 +68,11 @@ const Subjects = ({ studentData }) => {
                 contentContainerStyle={{ paddingBottom: 10 }}
             />
         </View>
+
+         <View style={styles.footer_text}>
+                        <Text style={styles.footer_text_content}>UOV {'\u00A9'}  2024</Text>
+                      </View>
+        </>      
     );
 };
 
@@ -92,6 +98,21 @@ const styles = StyleSheet.create({
         marginHorizontal: 15,
         marginBottom: 10,
     },
+    footer_text: {
+        backgroundColor: '#4b0150',
+        width: '90%',
+        height: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        marginLeft: 20,
+      },
+      footer_text_content: {
+        color: '#fff',
+        fontSize: 12,
+        flex: 1,
+        marginTop:5,
+      },
     verticalLine1: {
         width: "95%",
         backgroundColor: '#ccc',
