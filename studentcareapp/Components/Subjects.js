@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
         
     },
     column: {
-        flex: 0,
+        flex: 1,
 
     },
     column1: {
