@@ -1,6 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
+import { ScrollView, StyleSheet } from 'react-native';
 import Profile from './Profile';
 import Course from './Course';
 import Subjects from './Subjects';
@@ -8,6 +9,14 @@ import Subjects from './Subjects';
 const Tab = createBottomTabNavigator();
 
 const BottomTabNavigator = ({ studentData }) => {
+
+    const ScrollableScreen = (Component) => {
+        return (
+          <ScrollView contentContainerStyle={styles.scrollContainer}>
+            <Component studentData={studentData} />
+          </ScrollView>
+        );
+      };
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
