@@ -161,6 +161,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         marginHorizontal: 15,
+        marginLeft:25,
     },
     row1: {
         flexDirection: 'row',
