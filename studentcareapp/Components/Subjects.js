@@ -161,6 +161,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         marginHorizontal: 15,
+        marginLeft:30
     },
     row1: {
         flexDirection: 'row',
@@ -168,6 +169,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         marginHorizontal: 15,
+        
     },
     column: {
         flex: 0,
