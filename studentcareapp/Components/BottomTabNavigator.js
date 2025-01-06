@@ -9,14 +9,14 @@ import Subjects from './Subjects';
 const Tab = createBottomTabNavigator();
 
 const BottomTabNavigator = ({ studentData }) => {
+  const ScrollableScreen = (Component) => {
+    return (
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <Component studentData={studentData} />
+      </ScrollView>
+    );
+  };
 
-    const ScrollableScreen = (Component) => {
-        return (
-          <ScrollView contentContainerStyle={styles.scrollContainer}>
-            <Component studentData={studentData} />
-          </ScrollView>
-        );
-      };
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -37,17 +37,23 @@ const BottomTabNavigator = ({ studentData }) => {
       })}
     >
       <Tab.Screen name="Profile">
-        {() => <Profile studentData={studentData} />}
+        {() => ScrollableScreen(Profile)}
       </Tab.Screen>
       <Tab.Screen name="Courses">
-        {() => <Course studentData={studentData} />}
+        {() => ScrollableScreen(Course)}
       </Tab.Screen>
       <Tab.Screen name="Subjects">
-        {() => <Subjects studentData={studentData} />}
+        {() => ScrollableScreen(Subjects)}
       </Tab.Screen>
     </Tab.Navigator>
-
   );
 };
+
+const styles = StyleSheet.create({
+  scrollContainer: {
+    flexGrow: 1,
+    padding: 16, // Optional padding for a better layout
+  },
+});
 
 export default BottomTabNavigator;
