@@ -52,7 +52,7 @@ const BottomTabNavigator = ({ studentData }) => {
 const styles = StyleSheet.create({
   scrollContainer: {
     flexGrow: 1,
-    padding: 16, // Optional padding for a better layout
+    padding: 16, 
   },
 });
 

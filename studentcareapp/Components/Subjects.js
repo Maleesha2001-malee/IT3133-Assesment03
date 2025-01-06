@@ -47,11 +47,11 @@ const Subjects = ({ studentData }) => {
     );
 
     const renderItem = ({ item }) => (
-        <View style={styles.row}>
+        <View style={[styles.row,styles.headerRow1]}>
             <View style={styles.column}>
                 <Text style={styles.subject}>{item.subjectName}</Text>
             </View>
-            <View style={styles.column}>
+            <View style={styles.column2}>
                 <Text style={styles.marks}>{item.marks}</Text>
             </View>
         </View>
@@ -161,6 +161,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         marginHorizontal: 15,
+        marginLeft:30,
+        
     },
     row1: {
         flexDirection: 'row',
@@ -170,8 +172,8 @@ const styles = StyleSheet.create({
         marginHorizontal: 15,
     },
     column: {
-        flex: 0,
-
+        flex: 1,
+        
     },
     column1: {
         flex: 1,
@@ -189,6 +191,9 @@ const styles = StyleSheet.create({
     headerRow: {
         color: '#ddd',
         marginHorizontal: 15,
+    },
+    headerRow1: {
+        gap:0
     },
     headerText: {
         fontSize: 15,
